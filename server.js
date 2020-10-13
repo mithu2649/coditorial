@@ -42,7 +42,7 @@ app.use(methodOverride('_method'));
 
 //routes
 app.get('*', checkUser);
-app.use('/articles', requireAuth, articleRouter);
+app.use('/articles', articleRouter);
 app.get('/', async (req, res) => {
     const articles = await Article.find().sort({
         createdAt: 'desc'

@@ -20,10 +20,12 @@
         <% articles.forEach(article => { %>
             <div>
                 <h3><%= article.title %></h3>
-                <span><%= article.createdAt.toLocaleDateString() %></span>
                 <p><%= article.description %></p>
+                <span><%= article.createdAt.toDateString() %></span>
+                <br>
                 <a href="articles/<%= article.slug %>">Read More</a>
                 <a href="articles/edit/<%= article.id %>">Edit</a>
+
                 <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
                     <button type="submit">Delete</button>
                 </form>
