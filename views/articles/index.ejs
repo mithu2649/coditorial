@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coditorial</title>
+
+    <style>
+        form{
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Blog Articles</h1>
+        <a href="/articles/new">New Article</a>
+        <% articles.forEach(article => { %>
+            <div>
+                <h3><%= article.title %></h3>
+                <span><%= article.createdAt.toLocaleDateString() %></span>
+                <p><%= article.description %></p>
+                <a href="articles/<%= article.slug %>">Read More</a>
+                <a href="articles/edit/<%= article.id %>">Edit</a>
+                <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        <% }); %>
+    </div>
+</body>
+
+</html>

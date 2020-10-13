@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coditorial</title>
+</head>
+
+<body>
+    <div>
+        <h1><%= article.title %></h1>
+        <span><%= article.createdAt.toLocaleDateString() %></span><br><br>
+
+        <a href="/">All articles</a>
+        <a href="/articles/edit/<%= article.id %>">Edit</a>
+        <p>description: <%= article.description %></p>
+        <div><%- article.sanitizedHtml %></div>
+    </div>
+</body>
+
+</html>
