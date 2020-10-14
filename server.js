@@ -14,11 +14,11 @@ const articleRouter = require('./routes/articles.js');
 
 require('dotenv').config();
 const HOST = process.env.HOST;
-const PORT = process.env.PORT || 3300;
+const PORT = process.env.PORT || 3545;
 
 // database connection
 
-const dbURI = process.env.MONGO_URI;
+const dbURI = encodeURI(process.env.MONGO_URI);
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -26,7 +26,7 @@ mongoose.connect(dbURI, {
 })
     .then((result) => { 
         app.listen(PORT);
-        console.log(`listening on http://${HOST}:${PORT}`);
+        console.log(`>> listening on: http://${HOST}:${PORT}`);
     })
     .catch((err) => console.log(err));
 
