@@ -8,7 +8,7 @@ Can be used as a personal Blog.
 
 ##### Clone the repository
 
-<pre>git clone <code>git@github.com:mithu2649/coditorial.git<code></pre>
+<pre>git clone git@github.com:mithu2649/coditorial.git</pre>
 
 ##### Install the dependencies
 
