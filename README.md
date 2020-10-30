@@ -14,7 +14,7 @@ Can be used as a personal Blog.
 
 <code>cd</code> to the directory and install the dependencies
 
-<code>npm install</code>
+<pre>npm install</pre>
 
 ##### Set environment variables
 
@@ -22,7 +22,7 @@ Set your MongoDB URI in <code>.env</code> file (Check <code>.env-sample</code> f
 
 ##### Start the server
 
-<code>npm run devblog</code>
+<pre>npm run devblog</pre>
 
 #### All Done!
 
