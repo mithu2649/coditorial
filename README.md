@@ -8,7 +8,7 @@ Can be used as a personal Blog.
 
 ##### Clone the repository
 
-<code>git clone git@github.com:mithu2649/coditorial.git</code>
+<pre>git clone <code>git@github.com:mithu2649/coditorial.git<code></pre>
 
 ##### Install the dependencies
 
@@ -26,5 +26,5 @@ Set your MongoDB URI in <code>.env</code> file (Check <code>.env-sample</code> f
 
 #### All Done!
 
-Your server shall be started on localhost on port 3545
+Your server shall be started at localhost on port 3545
 <code>http://localhost:3545</code>
