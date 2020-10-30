@@ -10,13 +10,13 @@ React will soon be implemented.
 
 ##### Clone the repository
 
-<pre>git clone git@github.com:mithu2649/coditorial.git</pre>
+<pre style="background-color: #fff9b9;">git clone git@github.com:mithu2649/coditorial.git</pre>
 
 ##### Install the dependencies
 
 <code>cd</code> to the directory and install the dependencies
 
-<pre>npm install</pre>
+<pre style="background-color: #fff9b9;">npm install</pre>
 
 ##### Set environment variables
 
@@ -24,7 +24,7 @@ Set your MongoDB URI in <code>.env</code> file (Check <code>.env-sample</code> f
 
 ##### Start the server
 
-<pre>npm run devblog</pre>
+<pre style="background-color: #fff9b9;">npm run devblog</pre>
 
 #### All Done!
 
