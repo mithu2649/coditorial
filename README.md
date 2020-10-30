@@ -1,19 +1,20 @@
-# coditorial
+# Coditorial
 
 Website for the coditorial youtube channel
+Can be used as a personal Blog.
 
 
 ## Getting Started
 
 ##### Clone the repository
 
-<code>git clone git@github.com:mithu2649/coditorial.git</code>
+<pre>git clone git@github.com:mithu2649/coditorial.git</pre>
 
 ##### Install the dependencies
 
-<pre>cd</pre> to the directory and install the dependencies
+<code>cd</code> to the directory and install the dependencies
 
-<code>npm install</code>
+<pre>npm install</pre>
 
 ##### Set environment variables
 
@@ -21,9 +22,9 @@ Set your MongoDB URI in <pre>.env</pre> file (Check <pre>.env-sample</pre> file 
 
 ##### Start the server
 
-<code>npm run devblog</code>
+<pre>npm run devblog</pre>
 
 #### All Done!
 
 Your server shall be started on localhost on port 3545
-<pre>http://localhost:3545</pre>
+<code>http://localhost:3545</code>
