@@ -1,7 +1,9 @@
 # Coditorial
 
-Website for the coditorial youtube channel<br>
+Website for the coditorial youtube channel.
+
 Can be used as a personal Blog.
+
 Created using Nodejs, Express MongoDB, and ejs<br>
 React will soon be implemented.
 
