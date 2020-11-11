@@ -1,7 +1,9 @@
 # Coditorial
 
-Website for the coditorial youtube channel<br>
-Can be used as a personal Blog.
+Official Website for the Coditorial YouTube Channel.
+
+Can be customized to be used as a personal Blog.
+
 Created using Nodejs, Express MongoDB, and ejs<br>
 React will soon be implemented.
 
@@ -30,3 +32,5 @@ Set your MongoDB URI in <code>.env</code> file (Check <code>.env-sample</code> f
 
 Your server shall be started at localhost on port 3545
 <code>http://localhost:3545</code>
+
+Thankyou for contributing.
