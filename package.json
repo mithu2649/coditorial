@@ -4,7 +4,8 @@
   "description": "The Official Coditorial Blog",
   "main": "index.js",
   "scripts": {
-    "devblog": "nodemon -e js,ejs,html -w . -w public -w views -w routes -w models server.js"
+    "devblog": "nodemon -e js,ejs,html -w . -w public -w views -w routes -w models server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
