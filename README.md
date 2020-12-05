@@ -1,10 +1,6 @@
 # Coditorial
 
-Official Website for the Coditorial YouTube Channel.
-
-Can be customized to be used as a personal Blog.
-
-Created using Nodejs, Express MongoDB, and ejs<br>
+Official Website for the Coditorial YouTube Channel created using Nodejs, Express MongoDB. It can be customized to be used as a personal Blog.
 
 I'm thinking of implementing react, But don't have enoguh knowledge of it. Feel free to contribute.
 
