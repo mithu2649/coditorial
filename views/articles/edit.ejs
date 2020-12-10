@@ -1,29 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coditorial</title>
-    <script src="/ckeditor/ckeditor.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js" integrity="sha512-8DnqlIcZT5O7kn55WxWs0PnFyhwCqVEnsDpyHqcadSNtP0eqae406JmIoo2cXT5A42jnlcCw013sdkmK3mEJcQ==" crossorigin="anonymous"></script>    <script>hljs.initHighlightingOnLoad();</script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/atom-one-dark.min.css" integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ==" crossorigin="anonymous" />
-</head>
 
-<body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"
+      integrity="sha512-8DnqlIcZT5O7kn55WxWs0PnFyhwCqVEnsDpyHqcadSNtP0eqae406JmIoo2cXT5A42jnlcCw013sdkmK3mEJcQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/atom-one-dark.min.css"
+      integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ=="
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.tiny.cloud/1/sb90335spfuaf6rle1xvdqqexztwb2u0on3iuv2kdxpfv90k/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+  </head>
+
+  <body>
     <div>
-        <h1>Edit Article</h1>
+      <h1>Edit Article</h1>
 
-        <form action="/articles/<%= article.id %>/?_method=PUT" method="POST">
-            <%- include('_form_fields') %>
-        </form>
+      <form action="/articles/<%= article.id %>/?_method=PUT" method="POST">
+        <%- include('_form_fields') %>
+      </form>
     </div>
 
     <script>
-        CKEDITOR.replace('markdown', {
-          height: 400,
-          baseFloatZIndex: 10005
-        });
+      tinymce.init({
+        selector: "#markdown",
+        min_height: 350,
+        skin: "oxide",
+        icons: "material",
+        preview_styles: "font-size color",
+        resize: "both",
+        plugins: "link image media code autolink lists media table",
+        toolbar:
+          "undo redo | styleselect | forecolor  | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image media| code table",
+        toolbar_mode: "floating",
+        /* enable title field in the Image dialog*/
+        image_title: true,
+        /* enable automatic uploads of images represented by blob or data URIs*/ 
+        automatic_uploads: false,
+        images_upload_url: "/",
+        file_picker_types: "image",
+        tinycomments_mode: "embedded",
+        tinycomments_author: "Author name",
+      });
     </script>
-
-</body>
+  </body>
 </html>
