@@ -14,7 +14,7 @@ const articleRouter = require('./routes/articles.js');
 
 require('dotenv').config();
 const HOST = process.env.HOST;
-const PORT = process.env.PORT || 3545;
+const PORT = process.env.PORT || 3500;
 
 // database connection
 
