@@ -44,6 +44,8 @@ router.delete('/:id', requireAuth, async (req, res) => {
     res.redirect('/');
 })
 
+
+
 function saveArticleAndRedirect(path){
     return async (req, res) => {
         let article = req.article;
@@ -58,7 +60,5 @@ function saveArticleAndRedirect(path){
         }
     }
 }
-
-
 module.exports  = router;
 

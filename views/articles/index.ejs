@@ -10,6 +10,16 @@
         form{
             display: inline-block;
         }
+        a{
+            padding-right: 8px;
+        }
+
+        .article{
+            background-color: rgb(231 231 231);
+            padding: 10px 10px 20px 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -17,19 +27,29 @@
     <div>
         <h1>Blog Articles</h1>
         <a href="/articles/new">New Article</a>
-        <a href="/login">Login</a>
+        
+        <% if(user){ %>
+            <p>logged in as <b> <%= user.email %> </b></p>
+        <% } else { %>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a> 
+        <% } %>
+
         <% articles.forEach(article => { %>
-            <div>
+            <div class="article">
                 <h3><%= article.title %></h3>
                 <p><%= article.description %></p>
                 <span><%= article.createdAt.toDateString() %></span>
-                <br>
+                <br><br>
                 <a href="articles/<%= article.slug %>">Read More</a>
-                <a href="articles/edit/<%= article.id %>">Edit</a>
+               
+                <% if(user){ %>
+                    <a href="articles/edit/<%= article.id %>">Edit</a>
 
-                <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } %>
             </div>
         <% }); %>
     </div>

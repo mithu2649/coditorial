@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3500;
 
 // database connection
 
-const dbURI = encodeURI(process.env.MONGO_URI);
+const dbURI = encodeURI(process.env.MONGO_LOCAL_URI);
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -51,6 +51,7 @@ app.get('/', async (req, res) => {
         createdAt: 'desc'
     });
     res.render('articles/index', { articles: articles });
+    
 });
 
 
