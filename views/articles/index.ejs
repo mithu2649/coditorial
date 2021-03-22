@@ -27,8 +27,8 @@
     <div>
         <h1>Blog Articles</h1>
         <a href="/articles/new">New Article</a>
-        
         <% if(user){ %>
+            <a href="/logout">Logout</a>
             <p>logged in as <b> <%= user.email %> </b></p>
         <% } else { %>
             <a href="/login">Login</a>
