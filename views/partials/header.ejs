@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coditorial</title>
+
+    <style>
+        .logo {
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+
+        }
+        .logo-img{
+            height: 48px;
+        }
+
+        .logo::after {
+            content: "";
+            display: block;
+            background-color: yellow;
+            height: 16px;
+            width: 198px;
+            position: absolute;
+            top: 19px;
+            left: 9px;
+            z-index: -1;
+
+        }
+
+        a {
+            padding-right: 8px;
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="text"] {
+            margin-bottom: 10px;
+        }
+
+        .reg-log {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .article {
+            background-color: rgb(244 244 244);
+            padding: 10px 10px 20px 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <h1 class="logo">CODITORIAL</h1> -->
+   <a href="/"><img class="logo-img" src="logo.png" alt="logo"></a> 
+
+

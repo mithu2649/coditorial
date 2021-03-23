@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coditorial</title>
-
-    <style>
-        form{
-            display: inline-block;
-        }
-        a{
-            padding-right: 8px;
-        }
-
-        .article{
-            background-color: rgb(231 231 231);
-            padding: 10px 10px 20px 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-
-<body>
+<%- include('../partials/header'); -%>
     <div>
-        <h1>Blog Articles</h1>
+        <h3>Blog Articles</h3>
         <a href="/articles/new">New Article</a>
         <% if(user){ %>
             <a href="/logout">Logout</a>
@@ -46,13 +21,12 @@
                 <% if(user){ %>
                     <a href="articles/edit/<%= article.id %>">Edit</a>
 
-                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                    <form style="display:inline-block" action="/articles/<%= article.id %>?_method=DELETE" method="POST">
                         <button type="submit">Delete</button>
                     </form>
                 <% } %>
             </div>
         <% }); %>
     </div>
-</body>
 
-</html>
+<%- include('../partials/footer'); -%>
