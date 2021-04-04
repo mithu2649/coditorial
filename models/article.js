@@ -41,12 +41,6 @@ const articleSchema = new mongoose.Schema({
         type: String,
         maxlength: 25,
         validate: [isAlphanumeric, 'username can only contain alpha-numeric characters']
-    },
-
-    category: {
-        type: String,
-        required: false,
-        maxlength: 60 
     }
 });
 
