@@ -26,8 +26,3 @@ Set your MongoDB URI in <code>.env</code> file (Check <code>.env-sample</code> f
 <pre>npm run devblog</pre>
 
 #### All Done!
-
-Your server shall be started at localhost on port 3545
-<code>http://localhost:3545</code>
-
-Thankyou for contributing.
