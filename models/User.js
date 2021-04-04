@@ -12,13 +12,14 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true,
+        required: [true, 'Please enter your name'],
         maxlength: 50,
     },
     username:{
         type: String,
-        required: true,
-        maxlength: 25,
+        unique: true,
+        required: [true, 'Please choose an username'],
+        maxlength: [25, 'Maximum password length is 25 characters'],
         validate: [isAlphanumeric, 'username can only contain alpha-numeric characters']
     },
     password: {
@@ -27,7 +28,6 @@ const userSchema = new mongoose.Schema({
         minlength: [6, 'Minimum password length is 6 characters'],
     }
 });
-
 
 // fire a function before doc saved to db
 userSchema.pre('save', async function (next) {

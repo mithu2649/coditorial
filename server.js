@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 
 const methodOverride = require('method-override');
-const Article = require('./models/article');
+const Article = require('./models/Article');
 
 const app = express();
 const articleRouter = require('./routes/articles.js');
@@ -53,6 +53,5 @@ app.get('/', async (req, res) => {
     res.render('articles/index', { articles: articles });
     
 });
-
 
 app.use(authRoutes);
