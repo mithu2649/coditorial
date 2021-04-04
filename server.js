@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const { checkUser } = require('./middleware/authMiddleware');
 
 const methodOverride = require('method-override');
-const Article = require('./models/article');
+const Article = require('./models/Article');
 
 const app = express();
 const articleRouter = require('./routes/articles.js');
