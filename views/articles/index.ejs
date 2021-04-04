@@ -19,7 +19,8 @@
                 <br>
                 <a href="articles/<%= article.slug %>">Read More</a>
                
-                <% if(user.username == article.author){ %>
+                
+                <% if(user && user.username == article.author){ %>
                     <a href="articles/edit/<%= article.id %>">Edit</a>
 
                     <form style="display:inline-block" action="/articles/<%= article.id %>?_method=DELETE" method="POST">
