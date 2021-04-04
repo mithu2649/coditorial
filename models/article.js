@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const marked = require('marked');
+const { isAlphanumeric } = require('validator');
 const slugify = require('slugify');
 
 //dom purify
@@ -11,7 +12,8 @@ const dompurify = createDomPurify(new JSDOM().window);
 const articleSchema = new mongoose.Schema({
     title: {
         required: true,
-        type: String
+        type: String,
+        maxlength: 160
     },
     description: {
         type: String
@@ -32,6 +34,13 @@ const articleSchema = new mongoose.Schema({
     sanitizedHtml: {
         required: true,
         type: String
+    },
+
+    author: {
+        required: true,
+        type: String,
+        maxlength: 25,
+        validate: [isAlphanumeric, 'username can only contain alpha-numeric characters']
     }
 });
 

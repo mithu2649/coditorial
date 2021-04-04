@@ -4,7 +4,7 @@
         <a href="/articles/new">New Article</a>
         <% if(user){ %>
             <a href="/logout">Logout</a>
-            <p>logged in as <b> <%= user.email %> </b></p>
+            <p>logged in as <b> <%= user.name %> </b></p>
         <% } else { %>
             <a href="/login">Login</a>
             <a href="/signup">Sign Up</a> 
@@ -14,11 +14,12 @@
             <div class="article">
                 <h3><%= article.title %></h3>
                 <p><%= article.description %></p>
-                <span><%= article.createdAt.toDateString() %></span>
-                <br><br>
+                <span><%= article.createdAt.toDateString() %></span><br>
+                <span><%= article.author %></span><br>
+                <br>
                 <a href="articles/<%= article.slug %>">Read More</a>
                
-                <% if(user){ %>
+                <% if(user.username == article.author){ %>
                     <a href="articles/edit/<%= article.id %>">Edit</a>
 
                     <form style="display:inline-block" action="/articles/<%= article.id %>?_method=DELETE" method="POST">

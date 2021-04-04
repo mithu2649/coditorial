@@ -18,7 +18,7 @@ const handleErrors = (err) => {
 
     // duplicate email error
     if (err.code === 11000) {
-        errors.email = 'that email is already registered';
+        errors.email = 'That email is already registered,  I guess great minds really do think alike.';
         return errors;
     }
 
@@ -53,10 +53,10 @@ module.exports.login_get = (req, res) => {
 }
 
 module.exports.signup_post = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, name, username, password } = req.body;
 
     try {
-        const user = await User.create({ email, password });
+        const user = await User.create({ email, name, username, password });
         const token = createToken(user._id);
         res.cookie('jwt', token, {
             httpOnly: true,

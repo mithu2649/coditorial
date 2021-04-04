@@ -2,12 +2,25 @@
 
 <form action="/signup">
     <h2>Sign up</h2>
+
     <label for="email">Email</label>
-    <input type="text" name="email" autocomplete="on" required />
+    <input type="text" name="email" autocomplete="off" required />
     <div class="email error"></div>
+
+    <label for="name">Name</label>
+    <input type="text" name="name" autocomplete="off" required>
+    <div class="name error"></div>
+
+    <label for="username">Username</label>
+    <input type="text" name="username" autocomplete="off" required>
+    <div class="username error"></div>
+
     <label for="password">Password</label>
-    <input type="password" name="password" autocomplete="on" required />
+    <input type="password" name="password" autocomplete="off" required />
     <div class="password error"></div>
+
+    
+    
     <button>Sign up</button> <a class="reg-log" href="login">Login</a>
 </form>
 
@@ -15,30 +28,39 @@
 
 <script>
     const form = document.querySelector('form');
-    const emailError = document.querySelector('.email.error');
+    const emailError    = document.querySelector('.email.error');
+    const nameError     = document.querySelector('.name.error');
+    const usernameError = document.querySelector('.username.error');
     const passwordError = document.querySelector('.password.error');
+
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // reset errors
         emailError.textContent = '';
+        nameError.textContent = '';
+        usernameError.textContent = '';
         passwordError.textContent = '';
 
         // get values
         const email = form.email.value;
+        const name = form.name.value;
+        const username = form.username.value;
         const password = form.password.value;
 
         try {
             const res = await fetch('/signup', {
                 method: 'POST',
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, name, username, password }),
                 headers: { 'Content-Type': 'application/json' }
             });
             const data = await res.json();
             console.log(data);
             if (data.errors) {
                 emailError.textContent = data.errors.email;
+                nameError.textContent = data.errors.name;
+                usernameError.textContent = data.errors.username;
                 passwordError.textContent = data.errors.password;
             }
             if (data.user) {
