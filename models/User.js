@@ -13,12 +13,13 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        maxlength: 50,
+        maxlength: [60, 'Your name can\'t have more than 60 characters'],
     },
     username:{
         type: String,
         required: true,
-        maxlength: 25,
+        unique: true,
+        maxlength: [25, 'Maximum username length is 25 characters'],
         validate: [isAlphanumeric, 'username can only contain alpha-numeric characters']
     },
     password: {
