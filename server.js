@@ -7,9 +7,11 @@ const { checkUser } = require('./middleware/authMiddleware');
 
 const methodOverride = require('method-override');
 const Article = require('./models/Article');
+const User = require('./models/User');
 
 const app = express();
 const articleRouter = require('./routes/articles.js');
+const userRouter = require('./routes/users.js')
 
 
 require('dotenv').config();
@@ -46,13 +48,12 @@ app.use(methodOverride('_method'));
 //routes
 app.get('*', checkUser);
 app.use('/articles', articleRouter);
-app.get('/', async (req, res) => {
-    const articles = await Article.find().sort({
-        createdAt: 'desc'
-    });
-    res.render('articles/index', { articles: articles });
-    
-});
+app.use('/users', userRouter);
+
+app.get('/', async (req, res) =>{
+    const articles = await Article.find().sort({createdAt: 'desc'});
+    res.status(200).json(articles);
+})
 
 
 app.use(authRoutes);
