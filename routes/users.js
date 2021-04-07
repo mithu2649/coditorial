@@ -14,7 +14,7 @@ router.get('/:username', (req, res) => {
         .select('_id username name email')
         .exec()
         .then(user => {
-            if (user == null) res.status(404).json({error: 'no such user'});
+            if (user == null) return res.status(404).json({error: 'no such user'});
             res.status(200).json(user);
         })
         .catch(err => {
@@ -25,13 +25,13 @@ router.get('/:username', (req, res) => {
 router.get('/:username/articles', async (req, res) => {
 
     const user = await User.findOne({ username: req.params.username });
-    if (!user) res.status(404).json({ error: 'No such user' })
+    if (!user) return res.status(404).json({ error: 'No such user' })
 
     const articles = await Article.find({ author: user._id })
         .sort({ createdAt: 'desc' })
         .populate('author', 'id email name username');
 
-    if (!articles) res.status(204).json({ error: 'No articles' });
+    if (!articles) return res.status(204).json({ error: 'No articles' });
 
     res.status(200).json(articles);
 });
