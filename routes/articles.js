@@ -16,13 +16,13 @@ router.get('/new', requireAuth, (req, res)=>{
 
 //read full article...
 router.get('/:slug', async (req, res) => {
-    const article = await Article.findOne({slug: req.params.slug});
+    const article = await Article.findOne({slug: req.params.slug}).populate('author', '_id username name email');
     if(article == null) res.redirect('/');
     res.render('articles/show', {article: article});
 });
 
-router.get('/edit/:id', requireAuth, async (req, res) => {
-    const article = await Article.findById(req.params.id);
+router.get('/edit/:slug', requireAuth, async (req, res) => {
+    const article = await Article.findOne({ slug: req.params.slug });
     res.render('articles/edit', {article: article});
 });
 
@@ -43,7 +43,6 @@ router.delete('/:id', requireAuth, async (req, res) => {
     await Article.findByIdAndDelete(req.params.id);
     res.redirect('/');
 })
-
 
 
 function saveArticleAndRedirect(path){

@@ -51,8 +51,14 @@ app.use('/articles', articleRouter);
 app.use('/users', userRouter);
 
 app.get('/', async (req, res) =>{
-    const articles = await Article.find().sort({createdAt: 'desc'});
-    res.status(200).json(articles);
+    // const articles = await Article.find().sort({createdAt: 'desc'});
+    // res.render('articles/index', {articles: articles});
+
+    const articles = await Article.find()
+        .sort({createdAt: 'desc'})
+        .populate('author', 'id email name username');
+    res.json({ articles })
+
 })
 
 

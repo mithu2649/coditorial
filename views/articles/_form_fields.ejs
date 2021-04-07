@@ -15,7 +15,7 @@
     <label for="markdown">Markdown</label>
     <textarea name="markdown" id="markdown" cols="30" rows="10"><%= article.markdown %></textarea>
    
-    <input type="hidden" name="author" id="author" value="<%= user.username %>">
+    <input name="author" id="author" value="<%= user._id %>">
    
     <br>
     <button type="submit">Post</button>

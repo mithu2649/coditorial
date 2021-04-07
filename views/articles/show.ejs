@@ -18,14 +18,18 @@
 <body>
     <div style="margin-left: auto; margin-right: auto; max-width: 700px">
         <a href="/">All articles</a>
-        <a href="/articles/edit/<%= article.id %>">Edit</a>
+        <a href="/articles/edit/<%= article.slug %>">Edit</a>
+        <% if(user){ %>
+            <a href="/logout">Logout</a>
+            <p>logged in as <b> <%= user.name %> </b></p>
+        <% } %>
 
         <h1><%= article.title %></h1>
         <p style="font-style: italic"><%= article.description %></p>
         <span><%= article.createdAt.toDateString() %></span><br><br>
        
         <div><%- article.markdown %></div>
-        <div><em>Article by <%- article.author %></em></div>
+        <div><em>Article by <%- article.author.name %></em></div>
     </div>
 </body>
 
