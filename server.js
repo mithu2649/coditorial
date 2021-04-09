@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
@@ -33,9 +32,6 @@ mongoose.connect(dbURI, {
     })
     .catch((err) => console.log(err));
 
-
-
-app.use(cors());
 
 //view engine
 app.set('view engine', 'ejs');
