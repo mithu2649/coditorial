@@ -50,6 +50,11 @@ app.get('*', checkUser);
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
 
+app.get('/letter-to-reshma', (req, res) => {
+    res.render('letter-to-reshma');
+});
+
+
 app.get('/', async (req, res) =>{
     const articles = await Article.find().sort({
         createdAt: 'desc'
