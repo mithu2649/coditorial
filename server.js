@@ -53,6 +53,9 @@ app.use('/users', userRouter);
 app.get('/letter-to-reshma', (req, res) => {
     res.render('letter-to-reshma');
 });
+app.get('/letter-to-koyel', (req, res) => {
+    res.render('letter-to-koyel');
+});
 
 
 app.get('/', async (req, res) =>{
