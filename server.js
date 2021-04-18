@@ -70,7 +70,7 @@ app.get('/letter-to-koyel', (req, res) => {
 // })
 
 app.get('/', async (req, res) => {
-    
+
     // const articles = await Article.find().sort({createdAt: 'desc'});
     // res.render('articles/index', {articles: articles});
 
@@ -84,18 +84,20 @@ app.get('/', async (req, res) => {
                 count: articles.length,
                 articles: articles.map(article => {
                     return {
-                        _id: article.id,
-                        title: article.title,
-                        slug: article.slug,
-                        url: `/articles/${article.slug}`,
-                        created_at: article.createdAt,
-                        author: {
-                            url: `/users/${article.author.username}`,
-                            author_details: article.author
+                        _id    : article.id,
+                        title  : article.title,
+                        slug   : article.slug,
+                        date   : article.createdAt,
+                        url    : `/articles/${article.slug}`,
+                        
+                        author : {
+                            url   : `/users/${article.author.username}`,
+                            info  : article.author
                         },
-                        description: article.description,
-                        markdown: article.markdown,
-                        sanitized_html: article.sanitizedHtml
+
+                        description     : article.description,
+                        markdown        : article.markdown,
+                        sanitized_html  : article.sanitizedHtml
                     }
                 })
             })
