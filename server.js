@@ -58,12 +58,12 @@ app.get('/letter-to-koyel', (req, res) => {
 });
 
 
-app.get('/', async (req, res) =>{
-    const articles = await Article.find().sort({
-        createdAt: 'desc'
-    });
-    res.render('articles/index', { articles: articles });
-})
+// app.get('/', async (req, res) =>{
+//     const articles = await Article.find().sort({
+//         createdAt: 'desc'
+//     });
+//     res.render('articles/index', { articles: articles });
+// })
 
 
 app.use(authRoutes);
