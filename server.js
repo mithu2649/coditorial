@@ -69,5 +69,40 @@ app.get('/letter-to-koyel', (req, res) => {
 //     res.render('articles/index', { articles: articles });
 // })
 
+app.get('/', async (req, res) => {
+    
+    // const articles = await Article.find().sort({createdAt: 'desc'});
+    // res.render('articles/index', {articles: articles});
+
+    Article
+        .find()
+        .sort({ createdAt: 'desc' })
+        .populate('author', 'id email name username')
+        .exec()
+        .then(articles => {
+            res.status(200).json({
+                count: articles.length,
+                articles: articles.map(article => {
+                    return {
+                        _id: article.id,
+                        title: article.title,
+                        slug: article.slug,
+                        url: `/articles/${article.slug}`,
+                        created_at: article.createdAt,
+                        author: {
+                            url: `/users/${article.author.username}`,
+                            author_details: article.author
+                        },
+                        description: article.description,
+                        markdown: article.markdown,
+                        sanitized_html: article.sanitizedHtml
+                    }
+                })
+            })
+        }).catch(error => {
+            console.error('error: ' + error.message);
+        })
+})
+
 
 app.use(authRoutes);
