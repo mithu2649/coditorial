@@ -29,11 +29,12 @@ router.get('/:slug', async (req, res) => {
         .exec()
         .then(article => {
             res.status(200).json({
-                    _id    : article.id,
-                    title  : article.title,
-                    slug   : article.slug,
-                    date   : article.createdAt,
-                    url    : `/articles/${article.slug}`,
+                    _id      : article.id,
+                    title    : article.title,
+                    slug     : article.slug,
+                    date     : article.createdAt,
+                    category : article.category,
+                    url      : `/articles/${article.slug}`,
                     
                     author : {
                         url   : `/users/${article.author.username}`,
@@ -81,6 +82,7 @@ function saveArticleAndRedirect(path) {
         article.description = req.body.description;
         article.markdown    = req.body.markdown;
         article.author      = req.body.author;
+        article.category    = req.body.category;
 
         try {
             article = await article.save();

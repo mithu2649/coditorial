@@ -19,6 +19,20 @@ const articleSchema = new mongoose.Schema({
         type: String,
         maxlength: 160
     },
+    slug: {
+        required: true,
+        type: String,
+        unique: true
+    },
+    createdAt: {
+        type: Date,
+        default: () => Date.now()
+    },
+    category: {
+        required: false,
+        type: String,
+        maxlength: 50
+    },
     description: {
         type: String
     },
@@ -26,15 +40,7 @@ const articleSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    createdAt: {
-        type: Date,
-        default: () => Date.now()
-    },
-    slug: {
-        required: true,
-        type: String,
-        unique: true
-    },
+    
     sanitizedHtml: {
         required: true,
         type: String
@@ -50,6 +56,8 @@ articleSchema.pre('validate', async function (next) {
         });
 
         if (this.slug) { 
+            // append random digits at the end of slug 
+            // to allow duplicate titles
             this.slug += `-${Date.now().toString().slice(-4)}` 
         }
     }

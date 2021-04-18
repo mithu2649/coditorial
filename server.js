@@ -84,12 +84,13 @@ app.get('/', async (req, res) => {
                 count: articles.length,
                 articles: articles.map(article => {
                     return {
-                        _id    : article.id,
-                        title  : article.title,
-                        slug   : article.slug,
-                        date   : article.createdAt,
-                        url    : `/articles/${article.slug}`,
-                        
+                        _id      : article.id,
+                        title    : article.title,
+                        slug     : article.slug,
+                        date     : article.createdAt,
+                        category : article.category,
+                        url      : `/articles/${article.slug}`,
+                    
                         author : {
                             url   : `/users/${article.author.username}`,
                             info  : article.author
