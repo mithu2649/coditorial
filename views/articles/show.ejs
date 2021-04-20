@@ -12,6 +12,26 @@
             width:100% !important;
             height: auto !important;
         }
+        .comments{
+            margin-left: 10px;
+        }
+
+        .comment{
+            background-color: honeydew;
+            padding: 5px;
+            margin: 5px;
+        }
+        .comment-name {
+            font-size: 15px;
+            text-decoration: none;
+        }
+        .comment-text{
+            font-size: 15px;
+            padding-left: 20px;
+        }
+        .comment-date{
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -26,11 +46,42 @@
 
         <h1><%= article.title %></h1>
         <p style="font-style: italic"><%= article.description %></p>
-        <span><%= article.createdAt.toDateString() %></span><br><br>
+        <span><%= article.date.toDateString() %></span><br><br>
        
-        <div><%- article.markdown %></div>
-        <div><em>Article by <%- article.author.name %></em></div>
-    </div>
+        <div><%- article.markdown %></div><br><br>
+        <div><em>Article by <%- article.author.info.name %></em></div>  
+        <br><br><hr><br>
+        <h3>Comments</h3>
+        <div class="comments">
+            <% article.comments.forEach(comment => { %>
+                <div class="comment">
+                    <a href="/users/<%= comment.user.username %>" class="comment-name"><%= comment.user.name %></a>
+                    <p class="comment-date"><%= comment.createdAt.toDateString()%></p>
+                    <p class="comment-text"><%= comment.comment%></p>
+                    <% if(user && comment.user.username == user.username){ %>
+                        <form style="display:inline-block" action="/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% }); %>
+        </div>
+
+        <h3>Add a comment</h3>
+        <% if(user){ %>
+            <form action="/comments" method="POST">
+                <input type="hidden" name="article" value="<%= article._id %>">
+                
+                <input type="hidden" name="user" value="<%= user._id %>">
+                <textarea name="comment" id="comment" cols="90" rows="8" placeholder="Start typing here..."></textarea>
+                <input type="submit" name="submit" value="submit">
+            </form>
+        <% } else { %>
+            <h5>Please login to comment on this article</h5>
+            <a href="/login">Login</a>
+        <% } %>
+    </div><br><br>
+  
 </body>
 
 </html>

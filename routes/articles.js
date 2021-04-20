@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('./../models/Article');
+const Comment = require('./../models/Comment');
 
 const authRoutes = require('./../routes/authRoutes');
 const { requireAuth, checkUser } = require('./../middleware/authMiddleware');
 
 router.get('*', checkUser);
 router.use(authRoutes)
-
 
 router.get('/new', requireAuth, (req, res) => {
     res.render('articles/new', { article: new Article() });
@@ -19,34 +19,53 @@ router.get('/:slug', async (req, res) => {
     // incase you want to render from views
     // const article = await Article.findOne({slug: req.params.slug}).populate('author', '_id username name email');
     // if(article == null) res.redirect('/');
-    // res.json(article);
     // res.render('articles/show', {article: article});
 
-    Article
+    let article = await Article
         .findOne({ slug: req.params.slug })
         .sort({ createdAt: 'desc' })
         .populate('author', 'id email name username')
         .exec()
-        .then(article => {
-            res.status(200).json({
-                    _id    : article.id,
-                    title  : article.title,
-                    slug   : article.slug,
-                    date   : article.createdAt,
-                    url    : `/articles/${article.slug}`,
-                    
-                    author : {
-                        url   : `/users/${article.author.username}`,
-                        info  : article.author
-                    },
+        .then(async (article) => {
 
-                    description     : article.description,
-                    markdown        : article.markdown,
-                    sanitized_html  : article.sanitizedHtml
-            })
+            let comments = await Comment
+                .find({ article: article.id })
+                .sort({ createdAt: 'desc' })
+                .populate('user', 'id email name username')
+                .exec()
+                .then(comments => {
+                    return comments;
+
+                }).catch(error => {
+                    console.error('error: ' + error.message);
+                })
+
+            let articleWithComments = {
+                _id    : article.id,
+                title  : article.title,
+                slug   : article.slug,
+                date   : article.createdAt,
+                url    : `/articles/${article.slug}`,
+                
+                author : {
+                    url   : `/users/${article.author.username}`,
+                    info  : article.author
+                },
+
+                description     : article.description,
+                markdown        : article.markdown,
+                sanitized_html  : article.sanitizedHtml,
+                comments: comments
+            }
+        
+            return articleWithComments;
+
         }).catch(error => {
             console.error('error: ' + error.message);
         })
+
+        res.render('articles/show', {article: article});
+        // res.status(200).json(article);
 });
 
 router.get('/edit/:slug', requireAuth, async (req, res) => {

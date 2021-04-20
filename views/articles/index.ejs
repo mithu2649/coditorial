@@ -10,12 +10,13 @@
             <a href="/signup">Sign Up</a> 
         <% } %>
 
-        <% articles.forEach(article => { %>
+        
+        <% articles.articles.forEach(article => { %>
             <div class="article">
                 <h3><%= article.title %></h3>
                 <p><%= article.description %></p>
-                <span><%= article.createdAt.toDateString() %></span><br>
-                <span><%= article.author %></span><br>
+                <span><%= article.date.toDateString() %></span><br>
+                <span><%= article.author.info.name %></span><br>
                 <br>
                 <a href="articles/<%= article.slug %>">Read More</a>
                

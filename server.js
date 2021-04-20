@@ -12,6 +12,7 @@ const User = require('./models/User');
 
 const app = express();
 const articleRouter = require('./routes/articles.js');
+const commentRouter = require('./routes/comments.js');
 const userRouter = require('./routes/users.js')
 
 
@@ -52,6 +53,7 @@ app.use(methodOverride('_method'));
 //routes
 app.get('*', checkUser);
 app.use('/articles', articleRouter);
+app.use('/comments', commentRouter);
 app.use('/users', userRouter);
 
 app.get('/letter-to-reshma', (req, res) => {
@@ -71,25 +73,23 @@ app.get('/letter-to-koyel', (req, res) => {
 
 app.get('/', async (req, res) => {
 
-    // const articles = await Article.find().sort({createdAt: 'desc'});
-    // res.render('articles/index', {articles: articles});
 
-    Article
+    let articles = await Article
         .find()
         .sort({ createdAt: 'desc' })
         .populate('author', 'id email name username')
         .exec()
         .then(articles => {
-            res.status(200).json({
+            articles = {
                 count: articles.length,
                 articles: articles.map(article => {
-                    return {
+                    article  = {
                         _id    : article.id,
                         title  : article.title,
                         slug   : article.slug,
                         date   : article.createdAt,
                         url    : `/articles/${article.slug}`,
-                        
+
                         author : {
                             url   : `/users/${article.author.username}`,
                             info  : article.author
@@ -99,11 +99,20 @@ app.get('/', async (req, res) => {
                         markdown        : article.markdown,
                         sanitized_html  : article.sanitizedHtml
                     }
+
+                    return article;
+
                 })
-            })
+            }
+
+            return articles;
+
         }).catch(error => {
             console.error('error: ' + error.message);
         })
+
+    // res.json(articles)
+    res.render('articles/index', { articles: articles });
 })
 
 
