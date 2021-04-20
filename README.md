@@ -2,7 +2,6 @@
 
 Official Website for the Coditorial YouTube Channel created using Nodejs, Express and MongoDB. It can be customized to be used as a personal Blog.
 
-I'm thinking of implementing react, But don't have enoguh knowledge of it. Feel free to contribute.
 
 
 ## Getting Started
