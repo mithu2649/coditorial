@@ -1,5 +1,7 @@
 # Coditorial
 
+(Not actively working on this)
+
 Official website for the Coditorial YouTube channel being created using Nodejs, Express and MongoDB. It can be customized to be used as a personal blog.
 
 
