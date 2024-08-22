@@ -71,39 +71,39 @@ app.get('/letter-to-koyel', (req, res) => {
 
 app.get('/', async (req, res) => {
 
-    // const articles = await Article.find().sort({createdAt: 'desc'});
-    // res.render('articles/index', {articles: articles});
+    const articles = await Article.find().sort({createdAt: 'desc'});
+    res.render('articles/index', {articles: articles});
 
-    Article
-        .find()
-        .sort({ createdAt: 'desc' })
-        .populate('author', 'id email name username')
-        .exec()
-        .then(articles => {
-            res.status(200).json({
-                count: articles.length,
-                articles: articles.map(article => {
-                    return {
-                        _id    : article.id,
-                        title  : article.title,
-                        slug   : article.slug,
-                        date   : article.createdAt,
-                        url    : `/articles/${article.slug}`,
+    // Article
+    //     .find()
+    //     .sort({ createdAt: 'desc' })
+    //     .populate('author', 'id email name username')
+    //     .exec()
+    //     .then(articles => {
+    //         res.status(200).json({
+    //             count: articles.length,
+    //             articles: articles.map(article => {
+    //                 return {
+    //                     _id    : article.id,
+    //                     title  : article.title,
+    //                     slug   : article.slug,
+    //                     date   : article.createdAt,
+    //                     url    : `/articles/${article.slug}`,
                         
-                        author : {
-                            url   : `/users/${article.author.username}`,
-                            info  : article.author
-                        },
+    //                     author : {
+    //                         url   : `/users/${article.author.username}`,
+    //                         info  : article.author
+    //                     },
 
-                        description     : article.description,
-                        markdown        : article.markdown,
-                        sanitized_html  : article.sanitizedHtml
-                    }
-                })
-            })
-        }).catch(error => {
-            console.error('error: ' + error.message);
-        })
+    //                     description     : article.description,
+    //                     markdown        : article.markdown,
+    //                     sanitized_html  : article.sanitizedHtml
+    //                 }
+    //             })
+    //         })
+    //     }).catch(error => {
+    //         console.error('error: ' + error.message);
+    //     })
 })
 
 
